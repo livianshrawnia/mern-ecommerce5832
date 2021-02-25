@@ -16,7 +16,7 @@ exports.list = async () => {
   json.result = {};
     try{ 
 
-      const result = await User.find({ merchant : { $exists : true } }).sort({_id : -1});
+      const result = await User.find({ role : role.ROLES.Merchant }).sort({_id : -1});
 
       json.result.merchants = result;
       json.error = false;
