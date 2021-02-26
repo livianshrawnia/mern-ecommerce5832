@@ -52,7 +52,7 @@ export const handleCategorySelect = value => {
 export const fetchCategoriesSelect = () => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`/api/mer/category/list`);
+      const response = await axios.get(`/api/web/category/list`);
 
       let formattedCategories = formatSelectOptions(response.data.result.categories);
 
@@ -81,10 +81,25 @@ export const fetchCategories = () => {
   };
 };
 
+export const fetchCategoriesInterface = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`/api/interface/category/list`);
+
+      dispatch({
+        type: FETCH_CATEGORIES,
+        payload: response.data.result.categories
+      });
+    } catch (error) {
+      handleError(error, dispatch);
+    }
+  };
+};
+
 export const deleteCategory = (id, index) => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.delete(`/api/mer/category/delete/${id}`);
+      const response = await axios.delete(`/api/interface/category/delete/${id}`);
 
       const successfulOptions = {
         title: `${response.data.message}`,
@@ -138,7 +153,7 @@ export const addCategory = () => {
         return dispatch({ type: SET_CATEGORY_FORM_ERRORS, payload: errors });
       }
 
-      const response = await axios.post(`/api/mer/category/add`, newCategory);
+      const response = await axios.post(`/api/interface/category/add`, newCategory);
 
       const successfulOptions = {
         title: `Category added successfully.`,

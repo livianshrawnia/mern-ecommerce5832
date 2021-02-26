@@ -65,6 +65,10 @@ module.exports.ProductSchemaFormation = {
       name: CategorySchemaFormation.name
     }
   ],
+  isActive: {
+    type: Boolean,
+    default: true
+  },
   user : {
     type : Schema.Types.ObjectId,
     ref : 'User'

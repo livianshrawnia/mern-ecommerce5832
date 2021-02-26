@@ -10,10 +10,6 @@ const { brandListServlet } = require('../../servlet/merchant/brandListServlet');
 const { brandAddServlet } = require('../../servlet/merchant/brandAddServlet');
 const { brandEditServlet } = require('../../servlet/merchant/brandEditServlet');
 const { brandDeleteServlet } = require('../../servlet/merchant/brandDeleteServlet');
-const { categoryListServlet } = require('../../servlet/merchant/categoryListServlet');
-const { categoryAddServlet } = require('../../servlet/merchant/categoryAddServlet');
-const { categoryEditServlet } = require('../../servlet/merchant/categoryEditServlet');
-const { categoryDeleteServlet } = require('../../servlet/merchant/categoryDeleteServlet');
 const { productListServlet } = require('../../servlet/merchant/productListServlet');
 const { productAddServlet } = require('../../servlet/merchant/productAddServlet');
 const { productEditServlet } = require('../../servlet/merchant/productEditServlet');
@@ -33,11 +29,5 @@ router.get('/product/list', auth, role.checkRole(role.ROLES.Merchant, role.ROLES
 router.post('/product/add', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), productAddServlet);
 router.put('/product/edit/:productId', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), productEditServlet);
 router.delete('/product/delete/:productId', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), productDeleteServlet);
-
-/*************************  Category Routes ***********************/
-router.get('/category/list', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), categoryListServlet);
-router.post('/category/add', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), categoryAddServlet);
-router.put('/category/edit/:categoryId', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), categoryEditServlet);
-router.delete('/category/delete/:categoryId', auth, role.checkRole(role.ROLES.Merchant, role.ROLES.Admin), categoryDeleteServlet);
 
 module.exports = router;

@@ -16,6 +16,7 @@ module.exports.BrandSchemaFormation = {
     type: String,
     required: true,
     minlength : 3,
+    unique: true,
     trim: true
   },
   slug: { type: String, slug: 'name', unique: true },
@@ -32,7 +33,7 @@ module.exports.BrandSchemaFormation = {
   },
   isActive: {
     type: Boolean,
-    default: false
+    default: true
   },
   user : {
     type : Schema.Types.ObjectId,

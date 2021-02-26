@@ -2,7 +2,7 @@ const Product = require('../../models/product');
 const validator = require('validator');
 const { httpErrorCode } = require('../../../constant');
 const brandService = require('./brandService');
-const categoryService = require('./categoryService');
+const categoryService = require('../interface/categoryService');
 const { logger } = require('../../config/logger');
 
 /**

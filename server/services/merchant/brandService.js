@@ -66,6 +66,13 @@ exports.add = async (user, name, description) => {
         json.code = httpErrorCode.USER_ERROR;
         return json;
       }
+      const findBrand = await Brand.findOne({ name });
+      if (findBrand) {
+        json.error = true;
+        json.message = 'Brand already exist.';
+        json.code = httpErrorCode.USER_ERROR;
+        return json;
+      }
       if (validator.isEmpty(description)) {
         json.error = true;
         json.message = 'You must enter a brand description.';
@@ -129,6 +136,13 @@ exports.edit = async (user, brandId, name, description) => {
       if (!validator.isLength(name, {min : 3})) {
         json.error = true;
         json.message = 'Brand name must be at least 3 characters.';
+        json.code = httpErrorCode.USER_ERROR;
+        return json;
+      }
+      const findBrand = await Brand.findOne({ name });
+      if (findBrand && findBrand.id !== brandId) {
+        json.error = true;
+        json.message = 'Brand already exist.';
         json.code = httpErrorCode.USER_ERROR;
         return json;
       }

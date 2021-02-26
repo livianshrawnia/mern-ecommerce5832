@@ -12,6 +12,7 @@ import actions from '../../actions';
 
 import Admin from '../Admin';
 import Customer from '../Customer';
+import PanelMerchant from '../PanelMerchant';
 import LoadingIndicator from '../../components/LoadingIndicator';
 
 class Dashboard extends React.PureComponent {
@@ -28,6 +29,8 @@ class Dashboard extends React.PureComponent {
           <LoadingIndicator inline />
         ) : user.role === 'ROLE_MEMBER' ? (
           <Customer />
+        ) : user.role === 'ROLE_MERCHANT' ? (
+          <PanelMerchant />
         ) : (
           <Admin />
         )}

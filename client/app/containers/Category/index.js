@@ -15,7 +15,7 @@ import SubPage from '../../components/SubPage';
 
 class Category extends React.PureComponent {
   componentDidMount() {
-    this.props.fetchCategories();
+    this.props.fetchCategoriesInterface();
     //this.props.fetchProductsSelect();
   }
 

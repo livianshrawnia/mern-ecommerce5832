@@ -16,6 +16,7 @@ module.exports.CategorySchemaFormation = {
     type: String,
     required : true,
     minlength : 3,
+    unique: true,
     trim: true
   },
   slug: { 
@@ -29,6 +30,10 @@ module.exports.CategorySchemaFormation = {
     minlength : 10,
     maxlength : 100,
     trim: true
+  },
+  isActive: {
+    type: Boolean,
+    default: true
   },
   user : {
     type : Schema.Types.ObjectId,

@@ -17,6 +17,7 @@ import * as cart from './containers/Cart/actions';
 import * as newsletter from './containers/Newsletter/actions';
 import * as customer from './containers/Customer/actions';
 import * as admin from './containers/Admin/actions';
+import * as panelMerchant from './containers/PanelMerchant/actions';
 import * as account from './containers/Account/actions';
 import * as resetPassword from './containers/ResetPassword/actions';
 import * as users from './containers/Users/actions';
@@ -43,6 +44,7 @@ export default function mapDispatchToProps(dispatch) {
       ...newsletter,
       ...customer,
       ...admin,
+      ...panelMerchant,
       ...account,
       ...resetPassword,
       ...users,

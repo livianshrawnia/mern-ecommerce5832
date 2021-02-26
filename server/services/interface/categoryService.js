@@ -62,6 +62,13 @@ exports.add = async (user, name, description) => {
         json.code = httpErrorCode.USER_ERROR;
         return json;
       }
+      const findCategory = await Category.findOne({ name });
+      if (findCategory) {
+        json.error = true;
+        json.message = 'Category already exist.';
+        json.code = httpErrorCode.USER_ERROR;
+        return json;
+      }
       if (validator.isEmpty(description)) {
         json.error = true;
         json.message = 'You must enter a category description.';
@@ -119,6 +126,13 @@ exports.edit = async (user, categoryId, name, description) => {
       if (validator.isEmpty(name)) {
         json.error = true;
         json.message = 'You must enter a category name.';
+        json.code = httpErrorCode.USER_ERROR;
+        return json;
+      }
+      const findCategory = await Category.findOne({ name });
+      if (findCategory && findCategory.id !== categoryId) {
+        json.error = true;
+        json.message = 'Category already exist.';
         json.code = httpErrorCode.USER_ERROR;
         return json;
       }
@@ -204,6 +218,54 @@ exports.delete = async (categoryId) => {
     }catch(e){
         json.error = true;
         json.message = e.message;
+        json.code = httpErrorCode.SERVER_ERROR;
+        return json;
+    }
+}
+
+/**
+ * 
+ * @param {*} categoryId 
+ */
+exports.getCategoryById = async (categoryId) => {
+  logger.info(`categoryService::getCategoryById`);
+
+  let json = {};
+  json.result = {};
+  
+    try{ 
+
+      if (!validator.isMongoId(categoryId)) {
+        json.error = true;
+        json.message = 'Invalid categoryId.';
+        logger.error(JSON.stringify(json.message));
+        json.code = httpErrorCode.USER_ERROR;
+        return json;
+      }
+      
+      logger.info(`Category.findById(${categoryId})`);
+      const result = await Category.findById(categoryId);
+      logger.info(`hasResult : ${Boolean(result)}`);
+
+      if(!result){
+        json.error = true;
+        json.message = 'Invalid categoryId.';
+        logger.error(JSON.stringify(json.message));
+        json.code = httpErrorCode.USER_ERROR;
+        return json;         
+      }
+
+      json.result.category = result;
+      json.error = false;
+      json.message = 'Success.';
+      logger.info(JSON.stringify(json.message));
+      json.code = httpErrorCode.SUCCESS;
+      return json;
+
+    }catch(e){
+        json.error = true;
+        json.message = e.message;
+        logger.emerg(`Server Error : ${JSON.stringify(json.message)}`);
         json.code = httpErrorCode.SERVER_ERROR;
         return json;
     }
