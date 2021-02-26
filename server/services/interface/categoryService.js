@@ -1,6 +1,7 @@
 const Category = require('../../models/category');
 const validator = require('validator');
 const { httpErrorCode } = require('../../../constant');
+const { logger } = require('../../config/logger');
 
 /**
  *

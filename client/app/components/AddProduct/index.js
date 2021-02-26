@@ -130,9 +130,9 @@ const AddProduct = props => {
           </Col>
           <Col xs='12' md='12'>
             <SelectOption
-              error={formErrors['category']}
+              error={formErrors['categories']}
               label={'Select Category'}
-              multi={true}
+              multi={false}
               options={categories}
               value={selectedCategories}
               handleSelectChange={value => {

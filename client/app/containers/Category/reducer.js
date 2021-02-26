@@ -19,7 +19,7 @@ import {
 const initialState = {
   categories: [],
   categoriesSelect: [],
-  selectedCatogories: [],
+  selectedCategories: [],
   isCategoryAddOpen: false,
   categoryFormData: {
     name: '',
@@ -92,6 +92,7 @@ const categoryReducer = (state = initialState, action) => {
           name: '',
           description: ''
         },
+        selectedCategories: [],
         formErrors: {}
       };
     case TOGGLE_ADD_CATEGORY:
