@@ -57,12 +57,18 @@ module.exports.ProductSchemaFormation = {
   },
   brand : {
     _id : { type: Schema.Types.ObjectId, ref: 'Brand'},
-    name: BrandSchemaFormation.name
+    name: {
+      type: String,
+      trim: true
+    }
   },
   categories : [
     {
       _id : { type: Schema.Types.ObjectId, ref: 'Category'},
-      name: CategorySchemaFormation.name
+      name: {
+        type: String,
+        trim: true
+      }
     }
   ],
   isActive: {
