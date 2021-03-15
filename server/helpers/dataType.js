@@ -8,7 +8,8 @@ module.exports.string = (input) => {
 
 module.exports.integer = (input) => {
     let integerVar = 0;
-    if(!Number.isInteger(input)){
+    input = parseInt(input);
+    if(Number.isNaN(input)){
         return integerVar;
     }
     return input;
@@ -16,7 +17,8 @@ module.exports.integer = (input) => {
 
 module.exports.decimal = (input) => {
     let decimalVar = 0.00;
-    if(typeof input !== 'number' || Number.isNaN(input)){
+    input = parseFloat(input)
+    if(Number.isNaN(input)){
         return decimalVar;
     }
     return Number(input.toFixed(2));
